@@ -1,26 +1,19 @@
-import createHome from "./home";
-import createMenu from "./menu";
-import createAbout from "./about";
+import loadHome from "./home";
+import loadMenu from "./menu";
+import loadContact from "./contact";
 
-function setupTabs() {
-  const homeButton = document.getElementById("home");
-  const menuButton = document.getElementById("menu");
-  const aboutButton = document.getElementById("about");
+document.addEventListener("DOMContentLoaded", () => {
+  loadHome();
 
-  homeButton.addEventListener("click", () => {
-    createHome();
+  document.getElementById("home").addEventListener("click", () => {
+    loadHome();
   });
 
-  menuButton.addEventListener("click", () => {
-    createMenu();
+  document.getElementById("menu").addEventListener("click", () => {
+    loadMenu();
   });
 
-  aboutButton.addEventListener("click", () => {
-    createAbout();
+  document.getElementById("contact").addEventListener("click", () => {
+    loadContact();
   });
-
-  // Load the home page by default
-  createHome();
-}
-
-setupTabs();
+});
