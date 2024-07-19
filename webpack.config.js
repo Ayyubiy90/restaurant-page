@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: "development", // Ensure this line is included
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
@@ -19,8 +20,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[name].[ext]",
-              outputPath: "assets/",
+              name: "[path][name].[ext]",
             },
           },
         ],
@@ -32,4 +32,12 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 9000,
+    open: true,
+  },
 };
