@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development", // Ensure this line is included
+  mode: "development",
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
@@ -11,19 +11,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: [
           {
             loader: "file-loader",
             options: {
               name: "[path][name].[ext]",
+              context: "src",
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -36,7 +37,6 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
-    compress: true,
     port: 9000,
     open: true,
   },
